@@ -18,6 +18,15 @@
             <td>{{ $project->time }}</td>
             <td>{{ $project->description }}</td>
             <td>...</td>
+
+            @forelse($project->technology as $technology)
+            {{ $technology->label}} @unless
+            ($loop->last) , @else .
+            @endunless
+                
+            @empty
+                
+            @endforelse
         </tr>
         <a href="{{ route('projects.show', $project) }}"> Dettaglio </a>
         <a href="{{ route('projects.create') }}" role="button" class="btn btn-primary">Crea progetto</a>
