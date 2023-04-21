@@ -23,10 +23,6 @@ $project
 ->technologies()
 ->attach($faker->randomElements($technlogies, random_int(0, 3)));
 
-
         }
-
-
-
     }
 }
