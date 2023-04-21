@@ -12,8 +12,13 @@ class TypeSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
-        //
+        for($i = 0; $i < 40; $i++) {
+            $project = new Project;
+            $project->title = $faker->catchPhrase();
+            // ...
+            $project->save();
     }
+}
 }
