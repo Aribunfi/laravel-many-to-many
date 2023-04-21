@@ -24,7 +24,9 @@ class TechnologyController extends Controller
      */
     public function create()
     {
-        //
+        $project = new Project;
+  $tecnologies = Technology::orderBy('label')->get();
+  return view('admin.projects.form', compact('project', 'technologies'));
     }
 
     /**
