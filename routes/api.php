@@ -14,11 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-return response()->json([
-    'tile'=>"Biblioteca",
-    'year'=>"2022",
-    'kind'=>"web",
-    'time'=>"Six months",
-    'description'=>"A very unique book catalogue online made for smart and lonely kids",
+Route::get('/test', function() {
+    return response()->json([
+        'tile'=>"Biblioteca",
+        'year'=>"2022",
+        'kind'=>"web",
+        'time'=>"Six months",
+        'description'=>"A very unique book catalogue online made for smart and lonely kids",
+    
+    ]);
+}
 
-]);
+
+
+
+
+);
+
