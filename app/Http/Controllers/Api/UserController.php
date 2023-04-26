@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function index ()
 {
-    $projects = Project::all();
+    $projects = Project::paginate(5);
     return response()->json([
         'success' => true,
         'results' => $projects
