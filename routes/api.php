@@ -17,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+return response()->json([
+    'tile'=>"Biblioteca",
+    'year'=>"2022",
+    'kind'=>"web",
+    'time'=>"Six months",
+    'description'=>"A very unique book catalogue online made for smart and lonely kids",
+
+]);
