@@ -14,6 +14,13 @@ class UserController extends Controller
         'success' => true,
         'results' => $projects
     ]);
-}
-}
 
+    
+    
+}}
+
+axios.get(`${this.baseURL}`/api/projects, {
+    params: {
+        page: postApiPage
+    }
+}
