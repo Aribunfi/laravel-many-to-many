@@ -33,6 +33,10 @@ protected function getCreatedAtAttribute($value) {
     return date('d/m/Y H:i', strtotime($value));
 }
 
+public function getAbstract($max = 50) {
+    return substr($this->text, 0, $max) . "...";
+}
+
 public function getImageUri() {
     return $this->image ? asset('storage/' . $this->image) : 'https://www.lupoburtscher.it/wp-content/uploads/2018/04/lupo-burtscher-progetto-grafico-30-03.jpg';
 }

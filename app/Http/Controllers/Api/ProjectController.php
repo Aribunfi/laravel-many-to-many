@@ -21,6 +21,12 @@ class ProjectController extends Controller
        ->orderBy('updated_at', 'DESC')
        ->get();
 
+       foreach($projects as $project) {
+        $project->description = $project->getAbstract();
+       }
+
+
+
        return response()->json($projects);
     }
 
