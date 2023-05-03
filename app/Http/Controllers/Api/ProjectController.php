@@ -50,9 +50,9 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $project = Project::where('id', $id)->with('category', 'tags')->first();
+        $project = Project::where('slug', $slug)->with('category', 'tags')->first();
         if(!$project) return response(null, 404);
 
         return response()->json($project);
