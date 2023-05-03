@@ -19,7 +19,7 @@ class ProjectController extends Controller
        $projects = Project::where('is_published', true)
        ->with('category', 'tags')
        ->orderBy('updated_at', 'DESC')
-       ->get();
+       ->paginate();
 
        foreach($projects as $project) {
         $project->description = $project->getAbstract();
