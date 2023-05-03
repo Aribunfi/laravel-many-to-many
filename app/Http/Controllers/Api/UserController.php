@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ProjectController;
+
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -17,10 +19,10 @@ class UserController extends Controller
 
     
     
-}}
+}};
 
-axios.get(`${this.baseURL}`/api/projects, {
-    params: {
-        page: postApiPage
-    }
-}
+axios.get (${this.baseURL/api/projects}) (
+    params (
+        page->postApiPage
+        )
+);

@@ -19,9 +19,10 @@ class ProjectController extends Controller
        $projects = Project::where('is_published', true)
        ->with('category', 'tags')
        ->orderBy('updated_at', 'DESC')
-       ->paginate();
+       ->paginate(6);
 
        foreach($projects as $project) {
+        if($project->image) $project->image = $project->getImageUri();
         $project->description = $project->getAbstract();
        }
 
@@ -51,7 +52,10 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //
+        $project = Project::find($id);
+        if(!$project) return response(null, 404);
+
+        return response()->json($project);
     }
 
   

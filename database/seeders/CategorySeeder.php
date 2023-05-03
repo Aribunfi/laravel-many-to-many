@@ -6,6 +6,8 @@ use Faker\Generator as Faker;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+use Illuminate\Database\ProjectSeeder;
+
 class CategorySeeder extends Seeder
 {
     /**
