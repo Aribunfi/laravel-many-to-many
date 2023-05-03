@@ -33,7 +33,7 @@ protected function getCreatedAtAttribute($value) {
     return date('d/m/Y H:i', strtotime($value));
 }
 
-public function getAbstract($max = 50) {
+public function getAbstract($max = 200) {
     return substr($this->text, 0, $max) . "...";
 }
 
