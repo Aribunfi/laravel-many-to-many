@@ -52,7 +52,7 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        $project = Project::find($id);
+        $project = Project::where('id', $id)->with('category', 'tags')->first();
         if(!$project) return response(null, 404);
 
         return response()->json($project);
