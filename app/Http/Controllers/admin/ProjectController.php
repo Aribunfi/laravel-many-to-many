@@ -59,7 +59,7 @@ class ProjectController extends Controller
         $mail = new PublishedProjectMail();
 
         $user_email = Auth::user()->email;
-        Mail::to($user_email)->send();
+        Mail::to($user_email)->send($email);
 
     return to_route()('admin.projects.show', $project)
     ->with('message_content', "Project $project->id creato con successo");
@@ -97,49 +97,19 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Project $project)
-    {
-        $request->validate([
-            'title' => 'required|string|max:20',
-            'year' => 'required|integer|between:2009,2023',
-            'kind' => 'required|string|in:graphic,web,writing',
-            'time' => 'required|integer',
-            'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpg,png,jpeg',
-            'is_published' => 'boolean',
-            'category_id' => 'nullable|exists:categories,id',
-            'tags' => 'nullable|exists:tags,id',
+    { $project->update($data);
+        $mail = new PublishedProjectMail($project);
+        $user_email = Auth::user()->email;
+        Mail::to($user_email)->send($mail);
 
-        ],
+        if(Arr::exists($data, "tags"))
+        $project->tags()->sync($data["tags"]);
+        else$project->tags()->detach;
 
-        [
-        'title.required' => 'Il titolo è obbligatorio',
-        'title.string' => 'Il titolo deve essere una stringa',
-        'title.max' => 'Il titolo deve massimo di 20 caratteri',
-  
-        'year.required' => 'Anno è obbligatorio',
-        'year.integer' => 'Anno deve essere un numero',
-        'year.unique' => 'Anno deve essere unico',
-        'year.between' => 'Il numero deve essere compreso tra 2009:min e 2023:max',
-  
-        'kind.required' => 'Kind è obbligatorio',
-        'kind.string' => 'Kind deve essere una stringa',
-        'kind.in' => 'Kind deve essere un valore compreso tra "graphic", "web", "writing"',
-        
-        'time.required' => 'Time è obbligatorio',
-        'time.integer' => 'Time deve essere un numero',
-        
-        // 'img.string' => 'L\'immagine deve essere una stringa',
-        
-        'description.string' => 'La descrizione deve essere una stringa',
+        return to_route('admin.projects.show', $project)
+        ->with('message_content', Project $project->id)
 
-        'image.image' => 'Il file caricato deve essere un\'immagine',
-        'image.mimes' => 'Le estensioni accettate per l\'immagine sono jpg, png, jpeg',
-
-
-        'category_id.exists' => 'L\'id della categoria non è valido',
-        'tags_exists' => 'I tags selezionati non sono validi',
-        ]);
-
+    }
         $data = $request->all();
         $data["slug"] = Project::generateUniqueSlug($data["title"]);
         $data["is_published"] = $request->has("is_published") ? 1: 0;
@@ -233,6 +203,5 @@ class ProjectController extends Controller
             return to_route('admin.projects.show', $project)
 
         
-      }
-}
+      };
 
