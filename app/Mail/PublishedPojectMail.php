@@ -31,7 +31,7 @@ class PublishedPojectMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Published Poject Mail',
+            subject: 'Published Poject from ' . env('APP_NAME')
         );
     }
 
