@@ -31,7 +31,7 @@ class PublishedPojectMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Published Poject from ' . env('APP_NAME')
+            subject: 'Published Poject from ' . env('APP_NAME'),
         );
     }
 
@@ -43,7 +43,7 @@ class PublishedPojectMail extends Mailable
     public function content()
     {
         return new Content(
-            view: 'view.name',
+            view: 'mails.projects.published',
         );
     }
 
