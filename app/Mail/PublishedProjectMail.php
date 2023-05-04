@@ -49,7 +49,7 @@ class PublishedPojectMail extends Mailable
         return new Content(
             view: 'mails.projects.published',
             with: [
-                'title' => $this->project->title
+                'project' => $this->project
             ]
         );
     }
